@@ -1,5 +1,6 @@
 import './style.css';
 import * as THREE from 'three';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 /*
 1. Scene
@@ -37,21 +38,28 @@ const icosahedron = new THREE.Mesh(geometry, material);
 scene.add(icosahedron);
 // renderer.render(scene, camera);
 
-// const pointLight = new THREE.PointLight(0x0000ff);
-// pointLight.position.set(10, 5, 5);
-// scene.add(pointLight);
+const pointLight = new THREE.PointLight(0x0000ff);
+pointLight.position.set(10, 5, 5);
+scene.add(pointLight);
 
-// const pointLightHelper = new THREE.PointLightHelper(pointLight);
-// scene.add(pointLightHelper);
+const pointLightHelper = new THREE.PointLightHelper(pointLight);
+scene.add(pointLightHelper);
 
-// const ambientLight = new THREE.AmbientLight(0xffffff);
-// scene.add(ambientLight);
+const ambientLight = new THREE.AmbientLight(0xffffff);
+scene.add(ambientLight);
+
+// const greedHelper = new THREE.GridHelper(200, 50);
+// scene.add(greedHelper);
+
+// const controls = new OrbitControls(camera, renderer.domElement);
 
 const animate = () => {
   requestAnimationFrame(animate);
   icosahedron.rotation.x += 0.01;
   icosahedron.rotation.y += 0.005;
   icosahedron.rotation.z += 0.005;
+
+  // controls.update();
 
   renderer.render(scene, camera);
 };
