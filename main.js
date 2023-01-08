@@ -35,5 +35,15 @@ const material = new THREE.MeshBasicMaterial({
 const icosahedron = new THREE.Mesh(geometry, material);
 
 scene.add(icosahedron);
-renderer.render(scene, camera);
-// What happens??
+// renderer.render(scene, camera);
+
+const animate = () => {
+  requestAnimationFrame(animate);
+  icosahedron.rotation.x += 0.01;
+  icosahedron.rotation.y += 0.005;
+  icosahedron.rotation.z += 0.005;
+
+  renderer.render(scene, camera);
+};
+
+animate();
