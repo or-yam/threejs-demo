@@ -26,3 +26,14 @@ camera.position.setZ(30);
 
 renderer.render(scene, camera);
 // What happens??
+
+const geometry = new THREE.IcosahedronGeometry(10, 0);
+const material = new THREE.MeshBasicMaterial({
+  color: 0xf03080,
+  wireframe: true
+});
+const icosahedron = new THREE.Mesh(geometry, material);
+
+scene.add(icosahedron);
+renderer.render(scene, camera);
+// What happens??
