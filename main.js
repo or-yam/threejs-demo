@@ -1,6 +1,6 @@
 import './style.css';
 import * as THREE from 'three';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 /*
 1. Scene
@@ -42,8 +42,8 @@ const pointLight = new THREE.PointLight(0x0000ff);
 pointLight.position.set(10, 5, 5);
 scene.add(pointLight);
 
-const pointLightHelper = new THREE.PointLightHelper(pointLight);
-scene.add(pointLightHelper);
+// const pointLightHelper = new THREE.PointLightHelper(pointLight);
+// scene.add(pointLightHelper);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(ambientLight);
@@ -51,7 +51,24 @@ scene.add(ambientLight);
 // const greedHelper = new THREE.GridHelper(200, 50);
 // scene.add(greedHelper);
 
-// const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);
+
+const addCapsule = () => {
+  const geometry = new THREE.CapsuleGeometry(1, 1, 4, 8);
+  const material = new THREE.MeshBasicMaterial({ color: 0x8fd400 });
+  const capsule = new THREE.Mesh(geometry, material);
+
+  const [x, y, z] = Array(3)
+    .fill()
+    .map(() => THREE.MathUtils.randFloatSpread(100));
+  capsule.position.set(x, y, z);
+  scene.add(capsule);
+};
+
+Array(200).fill().forEach(addCapsule);
+
+const oceanBg = new THREE.TextureLoader().load('./ocean.jpg');
+scene.background = oceanBg;
 
 const animate = () => {
   requestAnimationFrame(animate);
@@ -59,7 +76,7 @@ const animate = () => {
   icosahedron.rotation.y += 0.005;
   icosahedron.rotation.z += 0.005;
 
-  // controls.update();
+  controls.update();
 
   renderer.render(scene, camera);
 };
