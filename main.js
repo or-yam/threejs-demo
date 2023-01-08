@@ -28,14 +28,24 @@ renderer.render(scene, camera);
 // What happens??
 
 const geometry = new THREE.IcosahedronGeometry(10, 0);
-const material = new THREE.MeshBasicMaterial({
-  color: 0xf03080,
-  wireframe: true
+const material = new THREE.MeshStandardMaterial({
+  // Update to Standard Material
+  color: 0xf03080
 });
 const icosahedron = new THREE.Mesh(geometry, material);
 
 scene.add(icosahedron);
 // renderer.render(scene, camera);
+
+// const pointLight = new THREE.PointLight(0x0000ff);
+// pointLight.position.set(10, 5, 5);
+// scene.add(pointLight);
+
+// const pointLightHelper = new THREE.PointLightHelper(pointLight);
+// scene.add(pointLightHelper);
+
+// const ambientLight = new THREE.AmbientLight(0xffffff);
+// scene.add(ambientLight);
 
 const animate = () => {
   requestAnimationFrame(animate);
